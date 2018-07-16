@@ -11,17 +11,12 @@ export default class Marker extends Component {
     }
 
     renderMarker() {
-        let {
-            map, google, position, mapCenter
-        } = this.props;
+        let { map, google, position, mapCenter } = this.props;
 
         let pos = position || mapCenter;
         position = new google.maps.LatLng(pos.lat, pos.lng);
 
-        const pref = {
-            map: map,
-            position: position
-        };
+        const pref = { map: map, position: position };
         this.marker = new google.maps.Marker(pref);
 
         eventNames.forEach(e => {
@@ -31,7 +26,8 @@ export default class Marker extends Component {
 
     handleEvent(evtName) {
         return (e) => {
-            const evtName = `on${camelize(evt)}`
+            console.log(e)
+            const evtName = `on${e}`
             if (this.props[evtName]) {
                 this.props[evtName](this.props, this.marker, e);
             }
