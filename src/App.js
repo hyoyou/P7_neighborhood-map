@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
+import GoogleApiComponent from '../node_modules/google-maps-react/dist/GoogleApiComponent';
+import { Map, Marker } from 'google-maps-react';
 import './App.css';
+import { restaurants } from './markers';
 
 class App extends Component {
-  static defaultProps = {
-    center: {
-      lat: 28.4753086,
-      lng: -81.4693343
-    },
-    zoom: 12
-  };
+  state = {
+    restaurants
+  }
 
   render() {
+    const style = {
+      width: '100vw',
+      height: '100vh'
+    }
+
     return (
       <div>
-        <div id="map" style={{ height: '100vh', width: '100%' }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          ></GoogleMapReact>
+        <div id="map" style={style}>
+          <Map google={this.props.google}>
+            <Marker />
+          </Map>
         </div>
       </div>
     );
   }
 }
 
-export default App;
+export default GoogleApiComponent({
+  apiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
+})(App);
