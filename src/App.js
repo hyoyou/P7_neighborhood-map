@@ -8,8 +8,7 @@ class App extends Component {
 
     this.state = {
       restaurants: restaurants,
-      activeMarker: {},
-      selectedPlace: {}
+      infoWindow: ''
     }
   }
 
@@ -23,19 +22,44 @@ class App extends Component {
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 16,
       center: {lat: 28.4753086, lng: -81.4693343}
-    })
+    });
+    let infoWindow = new window.google.maps.InfoWindow();
 
     this.renderMarkers(map);
+    this.setState({ infoWindow })
   }
 
-  // Render the markers for the restaurants
+  // Render the markers for each restaurant
   renderMarkers = (map) => {
     this.state.restaurants.map(restaurant => {
       let marker = new window.google.maps.Marker({
+        map: map,
         position: restaurant.pos,
-        map: map
+        title: restaurant.name,
+        animation: window.google.maps.Animation.DROP
+      })
+
+      // Create on click event listener to open infoWindow
+      marker.addListener('click', () => {
+        this.openInfoWindow(map, marker)
       })
     })
+  }
+
+  // Open Info Window for each marker when clicked
+  openInfoWindow = (map, marker) => {
+    let { infoWindow } = this.state;
+
+    // Check that infoWindow is not already opened for this marker
+    if (infoWindow.marker !== marker) {
+      infoWindow.marker = marker;
+      infoWindow.setContent(`<div>${marker.title}</div>`);
+      infoWindow.open(map, marker)
+      // Clear marker property when infoWindow is closed
+      infoWindow.addListener('closeclick', function() {
+        infoWindow.marker = null
+      })
+    }
   }
   
   render() {
