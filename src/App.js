@@ -18,10 +18,23 @@ class App extends Component {
     createMapLink(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&callback=initMap`);
   }
 
-  initMap() {
+  // Create new Google map with center at Universal Studios Orlando
+  initMap = () => {
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 16,
       center: {lat: 28.4753086, lng: -81.4693343}
+    })
+
+    this.renderMarkers(map);
+  }
+
+  // Render the markers for the restaurants
+  renderMarkers = (map) => {
+    this.state.restaurants.map(restaurant => {
+      let marker = new window.google.maps.Marker({
+        position: restaurant.pos,
+        map: map
+      })
     })
   }
   
@@ -51,8 +64,7 @@ function createMapLink(url) {
     document.write("Error loading Google Maps")
   }
 
-  let parent = window.document.getElementsByTagName('script')[0];
-  parent.appendChild(script);
+  document.body.appendChild(script);
 }
 
 export default App;
