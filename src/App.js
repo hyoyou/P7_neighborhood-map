@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import GoogleMapReact from 'google-map-react';
 import './App.css';
 
 class App extends Component {
+  static defaultProps = {
+    center: {
+      lat: 28.4753086,
+      lng: -81.4693343
+    },
+    zoom: 12
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <div id="map" style={{ height: '100vh', width: '100%' }}>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
+            defaultCenter={this.props.center}
+            defaultZoom={this.props.zoom}
+          ></GoogleMapReact>
+        </div>
       </div>
     );
   }
