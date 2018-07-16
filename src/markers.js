@@ -1,37 +1,51 @@
 export const restaurants = [
     {
         name: 'Three Broomsticks',
-        lat: 28.4727914,
-        lng: -81.4748345
+        pos: {
+            lat: 28.4727914,
+            lng: -81.4729141
+        }
     },
     {
         name: 'The Hog\'s Head',
-        lat: 28.4727432,
-        lng: -81.474898
+        pos: {
+            lat: 28.4727397,
+            lng: -81.4732512
+        }
     },
     {
         name: 'Krusty Burger',
-        lat: 28.4787188,
-        lng: -81.4701408
+        pos: {
+            lat: 28.4787188,
+            lng: -81.4701408
+        }
     },
     {
         name: 'Lard Lad\'s Donuts',
-        lat: 28.4787168,
-        lng: -81.4703859
+        pos: {
+            lat: 28.4787168,
+            lng: -81.4703859
+        }
     },
     {
         name: 'Mythos',
-        lat: 28.4724281,
-        lng: -81.4736842
+        pos: {
+            lat: 28.4724281,
+            lng: -81.4717638
+        }
     },
     {
         name: 'Margaritaville',
-        lat: 28.472295,
-        lng: -81.4686212
+        pos: {
+            lat: 28.472290,
+            lng: -81.466427
+        }
     },
     {
         name: 'Toothsome Chocolate Emporium',
-        lat: 28.4729935,
-        lng: -81.470056
+        pos: {
+            lat: 28.473086,
+            lng: -81.466029
+        }
     }
 ]
