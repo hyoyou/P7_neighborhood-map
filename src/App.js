@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import { restaurants } from './markers';
+import Menu from './Menu';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      restaurants,
       map:'',
       infoWindow: '',
+      markerInfo: '',
+      menuMarkers: []
     }
   }
 
@@ -32,7 +34,7 @@ class App extends Component {
 
   // Render the markers for each restaurant
   renderMarkers = (map) => {
-    this.state.restaurants.map(restaurant => {
+    restaurants.map(restaurant => {
       let marker = new window.google.maps.Marker({
         map: map,
         position: restaurant.pos,
@@ -44,6 +46,8 @@ class App extends Component {
       marker.addListener('click', () => {
         this.fetchInfo(marker);
       })
+
+      this.setState({ menuMarkers: this.state.menuMarkers.concat(marker) })
     })
   }
 
@@ -76,12 +80,13 @@ class App extends Component {
       let info = `<div id='marker'>
                     <h2>${name}</h2>
                     <h3>${category}</h3>
-                    <p>${address}</p>
+                    <p><strong>Located at:</strong> ${address}</p>
                   </div>`
       
       this.setState({ markerInfo: info });
       this.openInfoWindow(this.state.map, marker);
     })
+    .catch(err => console.error(err))
   } 
   
   render() {
@@ -92,9 +97,8 @@ class App extends Component {
 
     return (
       <div>
-        <div id="map" style={style}>
-          
-        </div>
+        <Menu infoWindow={this.state.infoWindow} expand={this.openInfoWindow} menuMarkers={this.state.menuMarkers} />
+        <div id="map" style={style}></div>
       </div>
     );
   }

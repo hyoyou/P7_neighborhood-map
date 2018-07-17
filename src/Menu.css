@@ -1,0 +1,15 @@
+.hamburger {
+    background-color: white;
+    position: absolute;
+    left: 1rem;
+    top: 1.5rem;
+    width: 2rem;
+    z-index: 10;
+}
+
+.menuList {
+    background-color: white;
+    padding: 10px 20px;
+    position: absolute;
+    z-index: 10;
+}
