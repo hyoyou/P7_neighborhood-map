@@ -12,6 +12,7 @@ export default class Menu extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.state.markers !== nextProps.menuMarkers) {
+            // console.log(nextProps)
             this.setState({ markers: nextProps.menuMarkers })
         }
     }
@@ -22,9 +23,13 @@ export default class Menu extends Component {
         menuList.style.display === 'none' ? menuList.style.display = 'block' : menuList.style.display = 'none';
     }
 
+    filter = () => {}
+
     render() {
-        const { markers } = this.props;
-        
+        const { markers } = this.state;
+        // if (markers.length > 0) {
+        //     debugger
+        // }
         return (
             <div className="menu" role="main">
                 <nav id="list-toggle" className="hamburger" onClick={this.toggleShow}>
@@ -36,11 +41,11 @@ export default class Menu extends Component {
                     <label htmlFor="search"></label>
                     <input id="search" type="text" placeholder="Filter" onChange={this.filter} />
                     <ul id="markerList">
-                        {this.props.menuMarkers && this.props.menuMarkers.map((marker, index) => {
-                            <li key={index}>
+                        {markers.length > 0 && markers.map((marker) => (
+                            <li key={marker.title}>
                                 {marker.title}
                             </li>
-                        })}
+                        ))}
                     </ul>
                 </div>
             </div>
