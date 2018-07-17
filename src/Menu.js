@@ -46,7 +46,7 @@ export default class Menu extends Component {
 
         return (
             <div className="menu" role="main">
-                <nav id="list-toggle" className="hamburger" onClick={this.toggleShow}>
+                <nav id="list-toggle" className="hamburger" onClick={this.toggleShow} tabIndex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
                     </svg>
@@ -54,10 +54,10 @@ export default class Menu extends Component {
                 <div className="menuList">
                     <label htmlFor="search"></label>
                     <input id="search" aria-labelledby='search filter' type="text" placeholder="Filter" onChange={this.filter} />
-                    <ul id="markerList">
+                    <ul id="markerList" role="menu">
                         {markers.length > 0 && markers.map((marker) => (
                             <li key={marker.title}>
-                                <a onClick={() => this.props.expand(marker)} onKeyUp={() => this.props.expand(marker)} tabIndex="0" role="navigation">{marker.title}</a>
+                                <a onClick={() => this.props.expand(marker)} onKeyUp={() => this.props.expand(marker)} tabIndex="0" role="menuitem">{marker.title}</a>
                             </li>
                         ))}
                     </ul>
