@@ -8,6 +8,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Clone the repository and navigate to the correct directory. Run `npm install && npm start` to run the development server. A browser should open, but in the case that it does not, navigate to [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+## Screenshot
+
+![Neighborhood Map Sample](https://raw.githubusercontent.com/hyoyou/P7_neighborhood-map/master/public/Demo.jpeg)
+
 ## Authors
 
 * **Heather You** - [Heather You](https://github.com/hyoyou/P7_neighborhood-map)
