@@ -78,9 +78,9 @@ class App extends Component {
       let address = rest.location.formattedAddress[0];
       
       let info = `<div id='marker'>
-                    <h2>${name}</h2>
-                    <h3>${category}</h3>
-                    <p><strong>Located at:</strong> ${address}</p>
+                    <h2 aria-label='Name of Restaurant'>${name}</h2>
+                    <h3 aria-label='Category'>${category}</h3>
+                    <p aria-label='Location'><strong>Located at:</strong> ${address}</p>
                   </div>`
       
       this.setState({ markerInfo: info });

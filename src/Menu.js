@@ -56,11 +56,11 @@ export default class Menu extends Component {
                 </nav>
                 <div className="menuList">
                     <label htmlFor="search"></label>
-                    <input id="search" type="text" placeholder="Filter" onChange={this.filter} />
+                    <input id="search" aria-labelledby='search filter' type="text" placeholder="Filter" onChange={this.filter} />
                     <ul id="markerList">
                         {markers.length > 0 && markers.map((marker) => (
                             <li key={marker.title}>
-                                <a onClick={() => this.props.expand(marker)}>{marker.title}</a>
+                                <a onClick={() => this.props.expand(marker)} onKeyUp={() => this.props.expand(marker)} tabIndex="0" role="navigation">{marker.title}</a>
                             </li>
                         ))}
                     </ul>
