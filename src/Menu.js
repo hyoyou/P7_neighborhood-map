@@ -17,6 +17,7 @@ export default class Menu extends Component {
         }
     }
 
+    // Toggle function to show and hide sidebar
     toggleShow = () => {
         const menuList = document.querySelector('.menuList');
 
@@ -27,9 +28,7 @@ export default class Menu extends Component {
 
     render() {
         const { markers } = this.state;
-        // if (markers.length > 0) {
-        //     debugger
-        // }
+
         return (
             <div className="menu" role="main">
                 <nav id="list-toggle" className="hamburger" onClick={this.toggleShow}>
@@ -43,7 +42,7 @@ export default class Menu extends Component {
                     <ul id="markerList">
                         {markers.length > 0 && markers.map((marker) => (
                             <li key={marker.title}>
-                                {marker.title}
+                                <a onClick={() => this.props.expand(marker)}>{marker.title}</a>
                             </li>
                         ))}
                     </ul>

@@ -54,7 +54,7 @@ class App extends Component {
   // Open Info Window for each marker when clicked
   openInfoWindow = (map, marker) => {
     let { infoWindow } = this.state;
-
+    console.log("map: ", map, "marker: ", marker)
     // Check that infoWindow is not already opened for this marker
     if (infoWindow.marker !== marker) {
       infoWindow.marker = marker;
@@ -97,7 +97,7 @@ class App extends Component {
 
     return (
       <div>
-        <Menu infoWindow={this.state.infoWindow} expand={this.openInfoWindow} menuMarkers={this.state.menuMarkers} />
+        <Menu infoWindow={this.state.infoWindow} expand={this.fetchInfo} menuMarkers={this.state.menuMarkers} map={this.state.map} />
         <div id="map" style={style}></div>
       </div>
     );
