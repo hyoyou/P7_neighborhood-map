@@ -3,16 +3,12 @@ import './App.css';
 import { restaurants } from './markers';
 import Menu from './Menu';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      map:'',
-      infoWindow: '',
-      markerInfo: '',
-      menuMarkers: []
-    }
+export default class App extends Component {
+  state = {
+    map:'',
+    infoWindow: '',
+    markerInfo: '',
+    menuMarkers: []
   }
 
   componentDidMount() {
@@ -42,7 +38,7 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP
       })
 
-      // Create on click event listener to open infoWindow
+      // Create on click event listener to start fetching marker information on click
       marker.addListener('click', () => {
         this.fetchInfo(marker);
       })
@@ -50,23 +46,7 @@ class App extends Component {
       this.setState({ menuMarkers: this.state.menuMarkers.concat(marker) })
     })
   }
-
-  // Open Info Window for each marker when clicked
-  openInfoWindow = (map, marker) => {
-    let { infoWindow } = this.state;
-
-    // Check that infoWindow is not already opened for this marker
-    if (infoWindow.marker !== marker) {
-      infoWindow.marker = marker;
-      infoWindow.setContent(this.state.markerInfo);
-      infoWindow.open(map, marker)
-      // Clear marker property when infoWindow is closed
-      infoWindow.addListener('closeclick', function() {
-        infoWindow.marker = null
-      })
-    }
-  }
-
+  
   // Fetch information for Info Window from Foursquare API
   fetchInfo = (marker) => {
     fetch(`https://api.foursquare.com/v2/venues/search?ll=${marker.getPosition().lat()},${marker.getPosition().lng()}&client_id=${process.env.REACT_APP_FOURSQUARE_CLIENT_ID}&client_secret=${process.env.REACT_APP_FOURSQUARE_SECRET}&v=20180323&limit=1`)
@@ -79,10 +59,10 @@ class App extends Component {
         let address = rest.location.formattedAddress[0];
         
         let info = `<div id='marker'>
-                      <h2 aria-label='Name of Restaurant'>${name}</h2>
-                      <h3 aria-label='Category'>${category}</h3>
-                      <p aria-label='Location'><strong>Located at:</strong> ${address}</p>
-                    </div>`
+        <h2 aria-label='Name of Restaurant'>${name}</h2>
+        <h3 aria-label='Category'>${category}</h3>
+        <p aria-label='Location'><strong>Located at:</strong> ${address}</p>
+        </div>`
         
         this.setState({ markerInfo: info });
         this.openInfoWindow(this.state.map, marker);
@@ -92,6 +72,22 @@ class App extends Component {
     })
     .catch(err => console.error("Error", err))
   } 
+
+  // Open Info Window for each marker when clicked
+  openInfoWindow = (map, marker) => {
+    let { infoWindow } = this.state;
+
+    // Check that infoWindow is not already opened for this marker
+    if (infoWindow.marker !== marker) {
+      infoWindow.marker = marker;
+      infoWindow.setContent(this.state.markerInfo);
+      infoWindow.open(map, marker)
+      // Clear marker property when infoWindow is closed
+      infoWindow.addListener('closeclick', function() {
+        infoWindow.marker = null;
+      })
+    }
+  }
   
   render() {
     const style = {
@@ -101,7 +97,7 @@ class App extends Component {
 
     return (
       <div>
-        <Menu infoWindow={this.state.infoWindow} expand={this.fetchInfo} menuMarkers={this.state.menuMarkers} map={this.state.map} />
+        <Menu expand={this.fetchInfo} menuMarkers={this.state.menuMarkers} map={this.state.map} />
         <div id="map" style={style}></div>
       </div>
     );
@@ -120,6 +116,4 @@ function createMapLink(url) {
 
   document.body.appendChild(script);
 }
-
-export default App;
 
