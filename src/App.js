@@ -105,14 +105,11 @@ export default class App extends Component {
 }
 
 // Add Google Map to page dynamically through asynchronous code injection
+// Lazy Load Async Pattern from https://friendlybit.com/js/lazy-loading-asyncronous-javascript/
 function createMapLink(url) {
   let script = window.document.createElement('script');
-  script.src = url;
   script.async = true;
-  
-  script.onerror = function() {
-    document.write("There was an error loading Google Maps")
-  }
+  script.src = url;
 
   document.body.appendChild(script);
 }
