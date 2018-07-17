@@ -48,3 +48,10 @@ li a:hover {
     background-color: white;
     text-decoration: underline;
 }
+
+/*=============== Media Queries ===============*/
+@media screen and (max-width: 767px) {
+    .menuList {
+        display: none;
+    }
+}
