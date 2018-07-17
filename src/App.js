@@ -90,7 +90,7 @@ class App extends Component {
         console.log("There was an error retrieving data")
       }
     })
-    .catch(err => console.error(err))
+    .catch(err => console.error("Error", err))
   } 
   
   render() {
@@ -115,7 +115,7 @@ function createMapLink(url) {
   script.async = true;
   
   script.onerror = function() {
-    document.write("Error loading Google Maps")
+    document.write("There was an error loading Google Maps")
   }
 
   document.body.appendChild(script);
