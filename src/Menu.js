@@ -24,7 +24,25 @@ export default class Menu extends Component {
         menuList.style.display === 'none' ? menuList.style.display = 'block' : menuList.style.display = 'none';
     }
 
-    filter = () => {}
+    filter = (event) => {
+        let query = event.target.value;
+        // console.log(query)
+        // let filteredMarkers = this.state.markers.filter(marker => marker.title.toLowerCase() == query.toLowerCase())
+        let allMarkers = this.props.menuMarkers;
+        let filteredMarkers = [];
+
+        // Matcher function: Loops through markers and checks for matches in lower-cased strings
+        allMarkers.forEach(function (marker) {
+            if (marker.title.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+                marker.setVisible(true);
+                filteredMarkers.push(marker);
+            } else {
+                marker.setVisible(false);
+            }
+        })
+
+        this.setState({ markers: filteredMarkers });
+    }
 
     render() {
         const { markers } = this.state;
