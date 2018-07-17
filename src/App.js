@@ -7,8 +7,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      restaurants: restaurants,
-      infoWindow: ''
+      restaurants,
+      map:'',
+      infoWindow: '',
     }
   }
 
@@ -26,7 +27,7 @@ class App extends Component {
     let infoWindow = new window.google.maps.InfoWindow();
 
     this.renderMarkers(map);
-    this.setState({ infoWindow })
+    this.setState({ map, infoWindow })
   }
 
   // Render the markers for each restaurant
@@ -41,7 +42,7 @@ class App extends Component {
 
       // Create on click event listener to open infoWindow
       marker.addListener('click', () => {
-        this.openInfoWindow(map, marker)
+        this.fetchInfo(marker);
       })
     })
   }
@@ -53,7 +54,7 @@ class App extends Component {
     // Check that infoWindow is not already opened for this marker
     if (infoWindow.marker !== marker) {
       infoWindow.marker = marker;
-      infoWindow.setContent(`<div>${marker.title}</div>`);
+      infoWindow.setContent(this.state.markerInfo);
       infoWindow.open(map, marker)
       // Clear marker property when infoWindow is closed
       infoWindow.addListener('closeclick', function() {
@@ -61,6 +62,27 @@ class App extends Component {
       })
     }
   }
+
+  // Fetch information for Info Window from Foursquare API
+  fetchInfo = (marker) => {
+    fetch(`https://api.foursquare.com/v2/venues/search?ll=${marker.getPosition().lat()},${marker.getPosition().lng()}&client_id=${process.env.REACT_APP_FOURSQUARE_CLIENT_ID}&client_secret=${process.env.REACT_APP_FOURSQUARE_SECRET}&v=20180323&limit=1`)
+    .then(res => res.json())
+    .then(restaurant => {
+      let rest = restaurant.response.venues[0];
+      let name = rest.name;
+      let category = rest.categories[0].name;
+      let address = rest.location.formattedAddress[0];
+      
+      let info = `<div id='marker'>
+                    <h2>${name}</h2>
+                    <h3>${category}</h3>
+                    <p>${address}</p>
+                  </div>`
+      
+      this.setState({ markerInfo: info });
+      this.openInfoWindow(this.state.map, marker);
+    })
+  } 
   
   render() {
     const style = {
