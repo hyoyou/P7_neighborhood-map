@@ -12,7 +12,6 @@ export default class Menu extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.state.markers !== nextProps.menuMarkers) {
-            // console.log(nextProps)
             this.setState({ markers: nextProps.menuMarkers })
         }
     }
@@ -26,8 +25,6 @@ export default class Menu extends Component {
 
     filter = (event) => {
         let query = event.target.value;
-        // console.log(query)
-        // let filteredMarkers = this.state.markers.filter(marker => marker.title.toLowerCase() == query.toLowerCase())
         let allMarkers = this.props.menuMarkers;
         let filteredMarkers = [];
 
