@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { restaurants } from './markers';
+import { lazyLoad } from './helpers';
 import Menu from './Menu';
 
 export default class App extends Component {
@@ -13,7 +14,7 @@ export default class App extends Component {
 
   componentDidMount() {
     window.initMap = this.initMap;
-    createMapLink(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&callback=initMap`);
+    lazyLoad(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&callback=initMap`);
   }
 
   // Create new Google map with center at Universal Studios Orlando
@@ -102,15 +103,5 @@ export default class App extends Component {
       </div>
     );
   }
-}
-
-// Add Google Map to page dynamically through asynchronous code injection
-// Lazy Load Async Pattern from https://friendlybit.com/js/lazy-loading-asyncronous-javascript/
-function createMapLink(url) {
-  let script = window.document.createElement('script');
-  script.async = true;
-  script.src = url;
-
-  document.body.appendChild(script);
 }
 
