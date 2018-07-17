@@ -5,11 +5,46 @@
     top: 1.5rem;
     width: 2rem;
     z-index: 10;
+    cursor: pointer;
+}
+
+#search {
+    width: 75%;
+    height: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .menuList {
-    background-color: white;
+    background-color: grey;
+    opacity: 0.9;
     padding: 10px 20px;
     position: absolute;
     z-index: 10;
+    height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-padding-start: 0;
+}
+
+li {
+    padding-top: 2rem;
+}
+
+li a {
+    font-size: 0.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+li a:hover {
+    color: black;
+    background-color: white;
+    text-decoration: underline;
 }

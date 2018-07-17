@@ -31,7 +31,7 @@ export default class Menu extends Component {
         let allMarkers = this.props.menuMarkers;
         let filteredMarkers = [];
 
-        // Matcher function: Loops through markers and checks for matches in lower-cased strings
+        // Matcher function: Loops through markers and checks for matches in lower-cased strings at any index
         allMarkers.forEach(function (marker) {
             if (marker.title.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
                 marker.setVisible(true);
