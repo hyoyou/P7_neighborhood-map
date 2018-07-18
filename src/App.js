@@ -14,7 +14,7 @@ export default class App extends Component {
 
   componentDidMount() {
     window.initMap = this.initMap;
-    lazyLoad(`https://maps.googleapis.com/maps/api/js?key=aIzaSyACBd5J3gcjLEZtOx9nS5mUmc5peZJLd8M&callback=initMap`);
+    lazyLoad(`https://maps.googleapis.com/maps/api/js?key=AIzaSyACBd5J3gcjLEZtOx9nS5mUmc5peZJLd8M&callback=initMap`);
   }
 
   // Create new Google map with center at Universal Studios Orlando
@@ -65,9 +65,9 @@ export default class App extends Component {
           let address = rest.location.formattedAddress[0];
           
           let info = `<div id='marker'>
-          <h2 aria-label='Name of Restaurant'>${name}</h2>
-          <h3 aria-label='Category'>${category}</h3>
-          <p aria-label='Location'><strong>Located at:</strong> ${address}</p>
+          <h2>${name}</h2>
+          <h3>${category}</h3>
+          <p><strong>Located at: </strong>${address}</p>
           </div>`
           
           this.setState({ markerInfo: info });

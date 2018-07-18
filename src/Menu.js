@@ -45,15 +45,15 @@ export default class Menu extends Component {
         const { markers } = this.state;
 
         return (
-            <div className="menu" role="main">
-                <nav id="list-toggle" className="hamburger" onClick={this.toggleShow} tabIndex="0">
+            <nav className="menu">
+                <div id="list-toggle" className="hamburger" onClick={this.toggleShow} onKeyPress={this.toggleShow} tabIndex="0" role="button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
                     </svg>
-                </nav>
+                </div>
                 <div className="menuList">
-                    <label htmlFor="search"></label>
-                    <input id="search" aria-labelledby='search filter' type="text" placeholder="Filter" onChange={this.filter} />
+                    <label htmlFor="search"><strong>Filter: </strong></label>
+                    <input id="search" type="text" placeholder="Type query here..." onChange={this.filter} />
                     <ul id="markerList" role="menu">
                         {markers.length > 0 && markers.map((marker) => (
                             <li key={marker.title}>
@@ -62,7 +62,7 @@ export default class Menu extends Component {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </nav>
         )
     }
 }
