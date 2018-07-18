@@ -24,6 +24,10 @@ export default class Menu extends Component {
     }
 
     filter = (event) => {
+        // Close any open Info Windows when user types in query
+        let { infoWindow } = this.props;
+        infoWindow.close(); 
+
         let query = event.target.value;
         let allMarkers = this.props.menuMarkers;
         let filteredMarkers = [];

@@ -106,7 +106,7 @@ export default class App extends Component {
     
     return (
       <div>
-        <Menu expand={this.fetchInfo} menuMarkers={this.state.menuMarkers} map={this.state.map} />
+        <Menu expand={this.fetchInfo} menuMarkers={this.state.menuMarkers} map={this.state.map} infoWindow={this.state.infoWindow} />
         <div id="map" style={style}></div>
       </div>
     );
