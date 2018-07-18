@@ -50,7 +50,7 @@ export default class App extends Component {
   
   // Fetch information for Info Window from Foursquare API
   fetchInfo = (marker) => {
-    fetch(`https://api.foursquare.com/v2/venues/search?ll=${marker.getPosition().lat()},${marker.getPosition().lng()}&client_id=2JIVBXJ0QPNTLER3VX2WWLOTEECNX4L4L0TPEHJG5O1ZTFQ&client_secret=50UU2TDWN03BTXTNPJBR52IU1FC2ZABE2BGSBJKCYTZKHPJH&v=20180323&limit=1`)
+    fetch(`https://api.foursquare.com/v2/venues/search?ll=${marker.getPosition().lat()},${marker.getPosition().lng()}&client_id=2JIVBXJ0QPNTLER3VX2WWLOTEECNX4L4L0TPEHJG5O1ZTFQ3&client_secret=50UU2TDWN03BTXTNPJBR52IU1FC2ZABE2BGSBJKCYTZKHPJH&v=20180323&limit=1`)
     .then(res => res.json())
     .then(restaurant => {
       if (restaurant) {
@@ -81,6 +81,8 @@ export default class App extends Component {
     // Check that infoWindow is not already opened for this marker
     if (infoWindow.marker !== marker) {
       infoWindow.marker = marker;
+      infoWindow.marker.setAnimation(window.google.maps.Animation.BOUNCE);
+      setTimeout(function(){ infoWindow.marker.setAnimation(null); }, 750);
       infoWindow.setContent(this.state.markerInfo);
       infoWindow.open(map, marker)
       // Clear marker property when infoWindow is closed
