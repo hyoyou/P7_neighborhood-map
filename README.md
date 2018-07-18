@@ -8,9 +8,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Clone the repository and navigate to the correct directory. Run `npm install && npm start` to run the development server. A browser should open, but in the case that it does not, navigate to [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+## Working Offline
+
+In order to have a working service worker, the app must run in production mode.
+Build the app by running `npm run build` and run it on a local server by using `serve -s build`.
+
 ## Screenshot
 
 ![Neighborhood Map Sample](https://raw.githubusercontent.com/hyoyou/P7_neighborhood-map/master/public/Demo.jpeg)
+
+## Third Party APIs
+
+Map API provided by [Google Maps JavaScript API](https://cloud.google.com/maps-platform/maps/)
+Places API provided by [Foursquare API](https://foursquare.com/developers/apps)
 
 ## Authors
 
