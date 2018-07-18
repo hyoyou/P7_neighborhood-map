@@ -2,8 +2,10 @@
 // Lazy Load Async Pattern from https://friendlybit.com/js/lazy-loading-asyncronous-javascript/
 export const lazyLoad = function(url) {
     let script = window.document.createElement('script');
-    script.async = true;
-    script.src = url;
+    script.defer = true;
+    script.onload = "this.checkError()";
+    script.onerror = "this.gm_authFailure()";
   
-    document.body.appendChild(script);
+    script.src = url;
+    document.body.appendChild(script);     
 }

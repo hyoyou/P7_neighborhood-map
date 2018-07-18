@@ -57,7 +57,7 @@ export default class Menu extends Component {
                     <ul id="markerList" role="menu">
                         {markers.length > 0 && markers.map((marker) => (
                             <li key={marker.title}>
-                                <a onClick={() => this.props.expand(marker)} onKeyUp={() => this.props.expand(marker)} tabIndex="0" role="menuitem">{marker.title}</a>
+                                <a id="listItem" onClick={() => this.props.expand(marker)} onKeyUp={() => this.props.expand(marker)} tabIndex="0" role="menuitem">{marker.title}</a>
                             </li>
                         ))}
                     </ul>
