@@ -17,10 +17,11 @@ Build the app by running `npm run build` and run it on a local server by using `
 
 ![Neighborhood Map Sample](https://raw.githubusercontent.com/hyoyou/P7_neighborhood-map/master/public/Demo.jpeg)
 
+
 ## Third Party APIs
 
-Map API provided by [Google Maps JavaScript API](https://cloud.google.com/maps-platform/maps/)
-Places API provided by [Foursquare API](https://foursquare.com/developers/apps)
+* Map API provided by [Google Maps JavaScript API](https://cloud.google.com/maps-platform/maps/)
+* Places API provided by [Foursquare API](https://foursquare.com/developers/apps)
 
 ## Authors
 
