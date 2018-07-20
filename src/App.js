@@ -14,7 +14,7 @@ export default class App extends Component {
 
   componentDidMount() {
     window.initMap = this.initMap;
-    lazyLoad(`https://maps.googleapis.com/maps/api/js?key=AIzaSyACBd5J3gcjLEZtOx9nS5mUmc5peZJLd8M&callback=initMap`);
+    lazyLoad(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&callback=initMap`);
   }
 
   // Create new Google map with center at Universal Studios Orlando
@@ -55,7 +55,7 @@ export default class App extends Component {
     if (!marker.getPosition()) {
       alert('There was an error loading the data. Please try again later')
     } else {
-      fetch(`https://api.foursquare.com/v2/venues/search?ll=${marker.getPosition().lat()},${marker.getPosition().lng()}&client_id=2JIVBXJ0QPNTLER3VX2WWLOTEECNX4L4L0TPEHJG5O1ZTFQ3&client_secret=50UU2TDWN03BTXTNPJBR52IU1FC2ZABE2BGSBJKCYTZKHPJH&v=20180323&limit=1`)
+      fetch(`https://api.foursquare.com/v2/venues/search?ll=${marker.getPosition().lat()},${marker.getPosition().lng()}&client_id=${process.env.REACT_APP_FOURSQUARE_CLIENT_ID}&client_secret=${process.env.REACT_APP_FOURSQUARE_SECRET}&v=20180323&limit=1`)
       .then(res => res.json())
       .then(restaurant => {
         if (restaurant) {
